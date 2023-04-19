@@ -12,6 +12,7 @@ namespace OrderServices.Profiles
             CreateMap<Order, ReadOrderDto>();
             CreateMap<Order, ReadAllOrder>();
             CreateMap<Product, ProductOutDto>();
+            CreateMap<Wallet, WalletOutDto>();
         }
     }
 }

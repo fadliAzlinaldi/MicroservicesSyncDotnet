@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OrderServices.Data;
+using OrderServices.Dtos;
+using OrderServices.Models;
 
 namespace OrderServices.Controllers
 {
@@ -9,10 +12,12 @@ namespace OrderServices.Controllers
     public class WalletsController : ControllerBase
     {
         private readonly IWalletRepo _walletRepo;
+        private readonly IMapper _mapper;
 
-        public WalletsController(IWalletRepo walletRepo)
+        public WalletsController(IWalletRepo walletRepo,IMapper mapper)
         {
             _walletRepo = walletRepo;
+            _mapper = mapper;
         }
         [HttpPost("Sync")]
         public async Task<ActionResult> SyncWallet()
@@ -33,6 +38,15 @@ namespace OrderServices.Controllers
             Console.WriteLine("--> Getting Product from OrderService");
             var walletItems = await _walletRepo.GetAllWallets();
             return Ok(walletItems);
+        }
+        [HttpGet("WalletOut")]
+        public async Task<IActionResult> WalletOut()
+        {
+            var wallets = await _walletRepo.GetAllWallets();
+
+            // Melakukan mapping dari IEnumerable<Wallet> ke IEnumerable<WalletOutDto>
+            var walletDtos = _mapper.Map<IEnumerable<Wallet>, IEnumerable<WalletOutDto>>(wallets);
+            return Ok(walletDtos);
         }
     }
 }
