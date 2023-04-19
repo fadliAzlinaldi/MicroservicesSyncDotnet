@@ -10,7 +10,7 @@ namespace ProductServices.Data
         Task Create(Product product);
         Task Update(int id, Product product);
         Task Delete(int id);
-        Task ProductOut(Product product);
+        Task ProductOut();
         bool SaveChanges();
     }
 }

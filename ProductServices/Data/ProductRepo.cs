@@ -1,14 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProductServices.Models;
+using ProductServices.SyncDataServices.Http;
 
 namespace ProductServices.Data
 {
     public class ProductRepo : IProductRepo
     {
         private readonly AppDbContext _context;
-        public ProductRepo(AppDbContext context)
+        private readonly IOrderDataClient _client;
+        public ProductRepo(AppDbContext context,IOrderDataClient client)
         {
             _context = context;
+            _client = client;
         }
         public Task Create(Product product)
         {
@@ -75,9 +78,28 @@ namespace ProductServices.Data
             return (_context.SaveChanges() >= 0);
         }
 
-        public Task ProductOut(Product product)
+        public async Task ProductOut()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var products = await GetAllProduct();
+                var productsUpdate = await _client.UpdateProducts();
+                foreach (var item in productsUpdate)
+                {
+                    var product = await _context.Products.FindAsync(item.ProductId);
+                    if (product != null)
+                    {
+                        product.Stock = item.Stock;
+                    }
+                }
+                await _context.SaveChangesAsync();
+
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Could not save changes to the database: {ex.Message}");
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

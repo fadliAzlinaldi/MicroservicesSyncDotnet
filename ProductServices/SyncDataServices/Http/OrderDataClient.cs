@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProductServices.Dtos;
+using ProductServices.Models;
 using System.Text;
 using System.Text.Json;
 
@@ -15,11 +16,26 @@ namespace ProductServices.SyncDataServices.Http
             _configuration = configuration;
         }
 
-        public async Task GetProductOut(int productId, int quantity)
+        public async Task<IEnumerable<Product>> UpdateProducts()
         {
-            //var response = await _httpClient.GetAsync(_configuration["OrderServices"]);
-            //// json dari get product out
-            //return Ok();
+            var response = await _httpClient.GetAsync(_configuration["OrderServices"]);
+            // JSON dari get /api/products/productout
+            if(response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"{content}");
+                var products = JsonSerializer.Deserialize<List<Product>>(content);
+                if(products != null) 
+                {
+                    Console.WriteLine($"{products.Count()} products returned from product Service");
+                    return products;
+                }
+                throw new Exception("No update product found");
+            }
+            else
+            {
+                throw new Exception("Unable to reach Orders Service");
+            }
         }
     }
 }

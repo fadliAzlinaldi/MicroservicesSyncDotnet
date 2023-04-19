@@ -1,9 +1,10 @@
 ﻿using ProductServices.Dtos;
+using ProductServices.Models;
 
 namespace ProductServices.SyncDataServices.Http
 {
     public interface IOrderDataClient
     {
-        Task GetProductOut(int productId, int quantity);
+        Task<IEnumerable<Product>> UpdateProducts();
     }
 }

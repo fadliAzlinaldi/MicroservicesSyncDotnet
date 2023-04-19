@@ -89,17 +89,18 @@ namespace ProductServices.Controllers
             _repo.SaveChanges();
             return Ok();
         }
-        //[HttpPost("SyncStock")]
-        //public async Task<ActionResult> SyncProductStok()
-        //{
-        //    try
-        //    {
-
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        return BadRequest($"Could not sync product stock from order services : {ex.Message}");
-        //    }
-        //}
+        [HttpPost("Sync")]
+        public async Task<ActionResult> SyncProducts()
+        {
+            try
+            {
+                await _repo.ProductOut();
+                return Ok("Products update from order Synced");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Could not sync product: {ex.Message}");
+            }
+        }
     }
 }
