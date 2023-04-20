@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WalletServices.Data;
+using WalletServices.SyncDataServices.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,9 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // service interface product repo
 builder.Services.AddScoped<IWalletRepo, WalletRepo>();
+
+// service interface order data client
+builder.Services.AddScoped<IOrderDataClient, OrderDataClient>();
 
 // seed db service
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("InMem"));
