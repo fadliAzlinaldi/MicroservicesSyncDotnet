@@ -84,7 +84,6 @@ namespace WalletServices.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        // menambah komen
         [HttpPost("Sync")]
         public async Task<ActionResult> SyncWallets()
         {
