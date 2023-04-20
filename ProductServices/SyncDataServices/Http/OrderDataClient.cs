@@ -27,7 +27,7 @@ namespace ProductServices.SyncDataServices.Http
                 var products = JsonSerializer.Deserialize<List<Product>>(content);
                 if(products != null) 
                 {
-                    Console.WriteLine($"{products.Count()} products returned from product Service");
+                    Console.WriteLine($"{products.Count()} products returned from order Service");
                     return products;
                 }
                 throw new Exception("No update product found");

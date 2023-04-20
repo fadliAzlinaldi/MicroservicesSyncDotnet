@@ -10,6 +10,7 @@ namespace WalletServices.Data
         Task Edit(string username, Wallet wallet);
         Task Topup(int cash, string username);
         Task CashOut(int cash, string username);
+        Task WalletUpdate();
         string GenerateId();
         bool SaveChanges();
     }

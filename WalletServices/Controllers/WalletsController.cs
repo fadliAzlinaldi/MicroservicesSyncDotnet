@@ -84,5 +84,18 @@ namespace WalletServices.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("/Sync")]
+        public async Task<ActionResult> SyncWallets()
+        {
+            try
+            {
+                await _repo.WalletUpdate();
+                return Ok("Wallets update from order synced");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Could not sync product: {ex.Message}");
+            }
+        }
     }
 }

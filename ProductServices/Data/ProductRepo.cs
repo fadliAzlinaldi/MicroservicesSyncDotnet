@@ -32,7 +32,6 @@ namespace ProductServices.Data
         public async Task<IEnumerable<Product>> GetAllProduct()
         {
             return _context.Products.ToList();
-            //throw new NotImplementedException();
         }
 
         public async Task<Product> GetById(int id)
@@ -43,7 +42,6 @@ namespace ProductServices.Data
                 throw new Exception("product not found");
             }
             return product;
-            //throw new NotImplementedException();
         }
 
         public async Task<Product> GetByName(string name)
@@ -71,7 +69,6 @@ namespace ProductServices.Data
             {
                 throw new Exception($"Error updating product: {ex.Message}");
             }
-            //throw new NotImplementedException();
         }
         public bool SaveChanges() 
         {

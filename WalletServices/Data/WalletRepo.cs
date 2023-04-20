@@ -1,16 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WalletServices.Controllers;
 using WalletServices.Models;
+using WalletServices.SyncDataServices.Http;
 
 namespace WalletServices.Data
 {
     public class WalletRepo : IWalletRepo
     {
         private readonly AppDbContext _context;
+        private readonly IOrderDataClient _client;
 
-        public WalletRepo(AppDbContext context)
+        public WalletRepo(AppDbContext context,IOrderDataClient client)
         {
             _context = context;
+            _client = client;
         }
         public Task Create(Wallet wallet)
         {
@@ -91,6 +94,29 @@ namespace WalletServices.Data
             catch (Exception ex)
             {
                 throw new Exception("Error top up wallet");
+            }
+        }
+
+        public async Task WalletUpdate()
+        {
+            try
+            {
+                var wallets = await GetAllWallet();
+                var walletUpdate = await _client.UpdateWallets();
+                foreach ( var item in wallets )
+                {
+                    var wallet = await _context.Wallets.FindAsync(item.Username);
+                    if (wallet != null)
+                    {
+                        wallet.Cash = item.Cash;
+                    }
+                }
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Could not save changes to the database: {ex.Message}");
+                throw new Exception(ex.Message);
             }
         }
     }
