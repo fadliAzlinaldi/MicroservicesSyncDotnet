@@ -84,7 +84,7 @@ namespace WalletServices.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("/Sync")]
+        [HttpPost("Sync")]
         public async Task<ActionResult> SyncWallets()
         {
             try
