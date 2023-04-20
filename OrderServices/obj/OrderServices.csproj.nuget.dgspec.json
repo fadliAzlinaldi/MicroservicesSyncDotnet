@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\MicroService\\Project\\OrderServices\\OrderServices.csproj": {}
+    "c:\\MicroService\\Project\\OrderServices\\OrderServices.csproj": {}
   },
   "projects": {
-    "C:\\MicroService\\Project\\OrderServices\\OrderServices.csproj": {
+    "c:\\MicroService\\Project\\OrderServices\\OrderServices.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\MicroService\\Project\\OrderServices\\OrderServices.csproj",
+        "projectUniqueName": "c:\\MicroService\\Project\\OrderServices\\OrderServices.csproj",
         "projectName": "OrderServices",
-        "projectPath": "C:\\MicroService\\Project\\OrderServices\\OrderServices.csproj",
+        "projectPath": "c:\\MicroService\\Project\\OrderServices\\OrderServices.csproj",
         "packagesPath": "C:\\Users\\os\\.nuget\\packages\\",
-        "outputPath": "C:\\MicroService\\Project\\OrderServices\\obj\\",
+        "outputPath": "c:\\MicroService\\Project\\OrderServices\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\os\\AppData\\Roaming\\NuGet\\NuGet.Config",

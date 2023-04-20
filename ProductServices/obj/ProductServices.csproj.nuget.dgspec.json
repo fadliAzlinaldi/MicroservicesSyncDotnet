@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\MicroService\\Project\\ProductServices\\ProductServices.csproj": {}
+    "c:\\MicroService\\Project\\ProductServices\\ProductServices.csproj": {}
   },
   "projects": {
-    "C:\\MicroService\\Project\\ProductServices\\ProductServices.csproj": {
+    "c:\\MicroService\\Project\\ProductServices\\ProductServices.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\MicroService\\Project\\ProductServices\\ProductServices.csproj",
+        "projectUniqueName": "c:\\MicroService\\Project\\ProductServices\\ProductServices.csproj",
         "projectName": "ProductServices",
-        "projectPath": "C:\\MicroService\\Project\\ProductServices\\ProductServices.csproj",
+        "projectPath": "c:\\MicroService\\Project\\ProductServices\\ProductServices.csproj",
         "packagesPath": "C:\\Users\\os\\.nuget\\packages\\",
-        "outputPath": "C:\\MicroService\\Project\\ProductServices\\obj\\",
+        "outputPath": "c:\\MicroService\\Project\\ProductServices\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\os\\AppData\\Roaming\\NuGet\\NuGet.Config",
