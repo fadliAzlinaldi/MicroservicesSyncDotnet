@@ -19,7 +19,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IWalletRepo, WalletRepo>();
 
 // service interface order data client
-builder.Services.AddScoped<IOrderDataClient, OrderDataClient>();
+builder.Services.AddHttpClient<IOrderDataClient, OrderDataClient>();
 
 // seed db service
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("InMem"));
