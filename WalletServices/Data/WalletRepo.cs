@@ -103,7 +103,7 @@ namespace WalletServices.Data
             {
                 var wallets = await GetAllWallet();
                 var walletUpdate = await _client.UpdateWallets();
-                foreach ( var item in wallets )
+                foreach ( var item in walletUpdate )
                 {
                     var wallet = await _context.Wallets.FindAsync(item.Username);
                     if (wallet != null)
